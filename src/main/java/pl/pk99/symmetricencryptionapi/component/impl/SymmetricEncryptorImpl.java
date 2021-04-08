@@ -29,7 +29,7 @@ public class SymmetricEncryptorImpl implements SymmetricEncryptor {
         try {
             Cipher cipher = Cipher.getInstance(AlgorithmsConfiguration.SYMMETRIC_CIPHER_ENCRYPTION_ALGORITHM);
             IvParameterSpec ivParameterSpec = new IvParameterSpec(generateInitializationVector());
-            cipher.init(Cipher.ENCRYPT_MODE, symmetricKey.getSecretKey(), ivParameterSpec);
+            cipher.init(Cipher.ENCRYPT_MODE, symmetricKey.getKey(), ivParameterSpec);
             return cipher.doFinal(text.getBytes());
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException
                 | InvalidKeyException | InvalidAlgorithmParameterException e) {
@@ -42,7 +42,7 @@ public class SymmetricEncryptorImpl implements SymmetricEncryptor {
         try {
             Cipher cipher = Cipher.getInstance(AlgorithmsConfiguration.SYMMETRIC_CIPHER_ENCRYPTION_ALGORITHM);
             IvParameterSpec ivParameterSpec = new IvParameterSpec(INITIALIZATION_VECTOR);
-            cipher.init(Cipher.DECRYPT_MODE, symmetricKey.getSecretKey(), ivParameterSpec);
+            cipher.init(Cipher.DECRYPT_MODE, symmetricKey.getKey(), ivParameterSpec);
             return new String(cipher.doFinal(encryptedText));
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException
                 | InvalidKeyException | InvalidAlgorithmParameterException e) {

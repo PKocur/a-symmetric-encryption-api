@@ -16,7 +16,7 @@ public class SymmetricKeyImpl implements SymmetricKey {
     private static SecretKey key;
 
     @Override
-    public SecretKey getSecretKey() {
+    public SecretKey getKey() {
         if (key == null) {
             throw new ApiException(HttpStatus.BAD_REQUEST, "key", ErrorMessages.KEY_NOT_EXIST);
         }

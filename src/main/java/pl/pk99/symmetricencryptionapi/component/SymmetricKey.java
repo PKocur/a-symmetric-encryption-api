@@ -8,7 +8,7 @@ public interface SymmetricKey {
      *
      * @return symmetric key
      */
-    SecretKey getSecretKey();
+    SecretKey getKey();
 
     /**
      * Sets the symmetric key.

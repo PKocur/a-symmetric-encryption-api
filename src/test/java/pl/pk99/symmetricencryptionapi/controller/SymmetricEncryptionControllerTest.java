@@ -17,7 +17,6 @@ import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -48,7 +47,6 @@ public class SymmetricEncryptionControllerTest {
 
         mockMvc
                 .perform(get(KEY_URI))
-                .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(content().string("{\"key\":" + "\"" + key + "\"}"));
     }
@@ -70,7 +68,6 @@ public class SymmetricEncryptionControllerTest {
                 .perform(post(KEY_URI)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new JSONObject(jsonBody).toString()))
-                .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string("{\"errors\":{\"key\":\"Field is required\"}}"));
     }
@@ -104,7 +101,6 @@ public class SymmetricEncryptionControllerTest {
                 .perform(post(ENCODE_URI)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new JSONObject(jsonBody).toString()))
-                .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string("{\"errors\":{\"message\":\"Field is required\"}}"));
     }
@@ -142,7 +138,6 @@ public class SymmetricEncryptionControllerTest {
                 .perform(post(DECODE_URI)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new JSONObject(jsonBody).toString()))
-                .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string("{\"errors\":{\"message\":\"Field is required\"}}"));
     }
